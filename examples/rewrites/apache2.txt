@@ -1,0 +1,13 @@
+#.htaccess 
+
+RewriteEngine on
+
+# prevent httpd from serving dotfiles (.htaccess, .svn, .git, etc.)
+RedirectMatch 403 /\..*$
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# skip if static files 
+RewriteRule ^(.*?)\.(php|css|js|jpg|jpeg|png|pdf|ttf|woff|woff2)$ - [L]
+# otherwise forward it to index.php
+RewriteRule . index.php
