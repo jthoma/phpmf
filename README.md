@@ -108,7 +108,7 @@ phpMF is extensible with event hooks, and there are six predefined hooks, and an
 
 ### MF::fireevent
 
-Register new hooks, for example in the view files, if you add the following just before '</head>' you have registerd a new hook, and the arguments are passed in the same sequence to the action handler if any action is registered in that hook.  
+Register new hooks, for example in the view files, if you add the following just before '&lt;/head&gt;' you have registerd a new hook, and the arguments are passed in the same sequence to the action handler if any action is registered in that hook. Action registration (MF::addaction) can add actions handlers to the hook any time before the event is fired in the sequence. 
 
 ```php
 MF::fireevent('head'[, $arg1, $arg2]);
