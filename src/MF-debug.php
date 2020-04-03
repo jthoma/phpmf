@@ -278,4 +278,37 @@ class MF
     return ($a['priority'] == $b['priority']) ? 0 : (($a['priority'] < $b['priority']) ? -1 : 1);
   }
 
+  /**
+   * A debugging function which helped a lot while stuck.
+   * @return boolean true
+   */
+  public static function debug()
+  {
+    $params = func_get_args();
+    $to = self::get('logfile');
+    $to = (!empty($to)) ? $to : false;
+    if (!$to) {
+      return true;
+    }
+    if ($to !== false && is_writable(dirname($to))) {
+      ob_start();
+      echo '#---------[' . date('c') . ']------' . "\n";
+    } else {
+      echo '<pre style="text-align: left;">' . "\n";
+    }
+    foreach ($params as $param) {
+      if (is_array($param) === true)
+        print_r($param);
+      else
+        var_dump($param);
+    }
+    if ($to !== false && is_writable(dirname($to))) {
+      echo '#------------------------------' . "\n";
+      $log = ob_get_clean();
+      file_put_contents($to, $log, FILE_APPEND);
+    } else {
+      echo '</pre>' . "\n";
+    }
+    return true;
+  }
 }

@@ -118,6 +118,8 @@ MF::fireevent('head'[, $arg1, $arg2]);
 
 As the name implies this is to debug the calls at any stage, for a full debug state, the settings addon or somewhere MF::set('logfile','&lt;something&gt;'), should be written, the '&lt;something&gt;' could either be a full path to a file which is writeable or it can evaluate to true ( with not writable ), in the first case the file is appended with the MF::debug() calls and the latter will display the same in '&lt;pre&gt;' tag on screen.
 
+To use switch to the [debug version](src/MF-debug.php)
+
 # Contributing
 
 ## Documentation 
