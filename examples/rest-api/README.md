@@ -29,7 +29,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"a": 10, "b": 5}' "http://
 {"success":true,"res":15}
 ```
 
-Now with a verbose tag the PUT Method is attempted
+Now with a verbose tag the PUT Method is attempted, note the response headers do have the "Content-Type: application/json" which we added through the hook on index.php line 21.
 
 ```
 curl -vv -X PUT -H "Content-Type: application/json" -d '{"a": 10, "b": 5}' "http://localhost:9080/api/add"
@@ -62,7 +62,7 @@ curl -X GET "http://localhost:9080/api/sub?a=100&b=80"
 {"success":true,"res":20}
 ```
 
-And finally the DELETE Method
+And finally the DELETE Method, the id expected is numeric and it shows the error. The {proxy+} is captured using the (.+) in the MF::MFR on index.php line 33.
 
 ```
 curl -X DELETE "http://localhost:9080/api/item/delete_id"
