@@ -120,6 +120,10 @@ As the name implies this is to debug the calls at any stage, for a full debug st
 
 To use switch to the [debug version](src/MF-debug.php)
 
+# Use Case Examples
+
+* [Rest API](./examples/rest-api/)
+
 # Contributing
 
 ## Documentation 
