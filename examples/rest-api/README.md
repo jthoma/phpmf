@@ -36,21 +36,21 @@ curl -vv -X PUT -H "Content-Type: application/json" -d '{"a": 10, "b": 5}' "http
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
 * Connected to localhost (127.0.0.1) port 9080 (#0)
-&gt; PUT /api/add HTTP/1.1
-&gt; Host: localhost:9080
-&gt; User-Agent: curl/7.58.0
-&gt; Accept: */*
-&gt; Content-Type: application/json
-&gt; Content-Length: 17
-&gt; 
+> PUT /api/add HTTP/1.1
+> Host: localhost:9080
+> User-Agent: curl/7.58.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 17
+> 
 * upload completely sent off: 17 out of 17 bytes
-&lt; HTTP/1.1 200 OK
-&lt; Date: Sat, 04 Apr 2020 16:40:34 GMT
-&lt; Server: Apache/2.4.29 (Ubuntu)
-&lt; Cache-Control: no-cache, must-revalidate
-&lt; Content-Length: 25
-&lt; Content-Type: application/json
-&lt; 
+< HTTP/1.1 200 OK
+< Date: Sat, 04 Apr 2020 16:40:34 GMT
+< Server: Apache/2.4.29 (Ubuntu)
+< Cache-Control: no-cache, must-revalidate
+< Content-Length: 25
+< Content-Type: application/json
+< 
 * Connection #0 to host localhost left intact
 {"success":true,"res":15}
 ```
