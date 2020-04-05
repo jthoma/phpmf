@@ -69,10 +69,19 @@ MF::addon('addon_function_name', [$arg1, $arg2, ....]);
 
 ### MF::object
 
-This loads any class from plugins/classname.php and methods can be operated from there. Check out the plugin [bodyparser](examples/plugins/bodyparser.php), which in the following case returns the post body json parsed as an associative array. And if the argument for getjson is false or null the default behaviour of json_decode is to return ```stdClass Object```.
+This loads any class from plugins/classname.php and methods can be operated from there. Check out the plugin [bodyparser](examples/plugins/#bodyparser), which in the following case returns the post body json parsed as an associative array. And if the argument for getjson is false or null the default behaviour of json_decode is to return ```stdClass Object```.
 
 ```php
 $array = MF::object("bodyparser")->getjson(true);
+```
+We had been using this for long with just a [mysqli wrapper](./examples/plugins/#mysql), but as of recent there was an enquiry for support for pdo. <strong>*Yes*</strong> you can make it support pdo with singleton instance. This method makes sure that the instance is available through function scopes without importing from global.
+
+```php
+// for once somewhere intialize the pdo
+MF::set('db', new PDO($dsn, $user, $pass));
+
+// later you can use the property methods
+MF::get('db')->query("SHOW TABLES");
 ```
 
 ### MF::display
