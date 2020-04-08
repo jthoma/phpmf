@@ -2,7 +2,7 @@
 
 /**
  * @package MariaFramework
- * @author Jiju Thomas Mathew <jijutm@saturn.in>
+ * @author Jiju Thomas Mathew <jijutm@gmail.com>
  */
 
 /**
@@ -139,8 +139,9 @@ class MF
         parse_str($tt['query'], $_GET);
       if (preg_match('@^' . $mask . $route . '$@i', $checkUri, $matches) > 0) {
         if (self::object($class) !== false) {
-          header("Cache-Control: no-cache, must-revalidate");
-          //header("Expires: " . gmdate("D, d M Y G:i:s T", time() + ($cacheable * 60)));
+          (!$cacheable) ? 
+            header("Cache-Control: no-cache, must-revalidate") :
+            header("Expires: " . gmdate("D, d M Y G:i:s T", time() + $cacheable));
           self::fireevent('before-handler', $class, $handler, $cacheable);
           self::object($class)->$handler($matches);
           self::fireevent('after-handler', $class, $handler, $cacheable);
