@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: My PHP Application
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  phpserver:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-phpserver
+      Description: PHP Webserver
+      CodeUri: src/helloworld
+      Runtime: provided
+      Handler: index.php
+      MemorySize: 256
+      Timeout: 30
+      Tracing: Active
+      Layers:
+        - !Sub arn:aws:lambda:${AWS::Region}:887080169480:layer:php73:3
+        - !Sub arn:aws:lambda:${AWS::Region}:875861770503:layer:php-aws-sdk:1
+      Events:
+        api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+Outputs:
+  InvokeURL:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/<any>"

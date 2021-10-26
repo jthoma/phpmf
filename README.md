@@ -132,6 +132,7 @@ To use switch to the [debug version](src/MF-debug.php)
 # Use Case Examples
 
 * [Rest API](./examples/rest-api/)
+* [AWS Serverless PHP SAM](./examples/php-lambda/)
 
 # Contributing
 

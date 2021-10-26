@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "lambda-phpmf"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-z41veoimuyfo"
+s3_prefix = "lambda-phpmf"
+region = "us-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+
