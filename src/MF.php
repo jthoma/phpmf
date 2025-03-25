@@ -138,8 +138,9 @@ public static function addon($addon)
       $checkUri = $tt['path'];
       if (!empty($tt['query']))
         parse_str($tt['query'], $_GET);
-      if (preg_match('@^' . $mask . $route . '$@i', $checkUri, $matches) > 0) {
-        if (self::object($class) !== false) {
+      $isMatch = stripos($checkUri , $mask . $route );
+    if ($isMatch !== false) {
+       if (self::object($class) !== false) {
           (!$cacheable) ? 
             header("Cache-Control: no-cache, must-revalidate") :
             header("Expires: " . gmdate("D, d M Y G:i:s T", time() + $cacheable));
