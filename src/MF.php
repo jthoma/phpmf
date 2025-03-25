@@ -59,23 +59,25 @@ class MF
    * @param String $addon
    * @return Mixed boolean false if addon does not exist
    */
-  public static function addon($addon)
-  {
+public static function addon($addon)
+{
     try {
-      $funcname = basename($addon);
-      $params = func_get_args();
-      if (function_exists($funcname) === false) {
-        $path = ($addon{
-        0} == '.' or $addon{
-        0} == '/') ? '' : self::get('addons');
-        require($path . $addon . '.php');
-      }
-      return call_user_func_array($funcname, array_slice($params, 1));
+        $funcname = basename($addon);
+        $params = func_get_args();
+        if (!function_exists($funcname)) {
+            $path = (strpos($addon, '.') === 0 || strpos($addon, '/') === 0) ? '' : self::get('addons');
+            $filepath = realpath($path . $addon . '.php');
+            if (!$filepath || !file_exists($filepath)) {
+                throw new Exception("Addon file not found: " . $path . $addon . '.php');
+            }
+            require_once $filepath;
+        }
+        return call_user_func_array($funcname, array_slice($params, 1));
     } catch (Exception $e) {
+        error_log("Error in MF::addon(): " . $e->getMessage()); // Log error
+        return false;
     }
-    return false;
-  }
-
+}
   /**
    * Keeps, checks and makes sure that any object instance is created just
    * once. It may be called as an object singleton store. Object instances
@@ -121,7 +123,6 @@ class MF
    * @param int $cacheable Though default is false, the value taken is unsigned integer
    *                       as minutes for caching
    * @uses MF::fireevent to fire before-handler event
-   * @uses MF::fireevent to fire after-handler event
    */
   public static function MFR($route, $class, $handler, $cacheable = false)
   {
