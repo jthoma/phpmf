@@ -2,8 +2,14 @@
 
 Plugins are basically custom php classes specifically written with grouped generic functionality.
 
+* [formatvalidator](#formatvalidator)
 * [bodyparser](#bodyparser)
 * [mysqli](#mysqli)
+
+<a name="formatvalidator"></a>
+## format validator
+
+Class helper for input format validation, further rule updations may be required other than what is provided. 
 
 <a name="bodyparser"></a>
 ## Body Parser
